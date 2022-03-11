@@ -5,7 +5,7 @@ import random
 from utils import *
 
 
-def hopfield(train_paths, test_paths):
+def hopfield_train(train_paths):
     Vectors = []
     initial = True
     qty = 0
@@ -26,21 +26,19 @@ def hopfield(train_paths, test_paths):
 
         qty+=1
 
-    print("Aprendizaje terminado")
-    print(f"Patrones aprendidos: {qty}")
+    return W, Vectors, qty
+
+def hopfield_test(test_paths, Vectors, W):
 
     #Fase de prueba
     for path in test_paths:
         img = preprocessing(path)
         Y = learning_vectors(img)
         Y = finding_patterns(W, Y, bias=0.5, epochs=100)
-
         H_distance = []
-
         index = 0
         index_min = 0
         cost = np.inf
-
         for vector in Vectors:
             H = hamming_distance(vector, Y)
             if H < cost:
@@ -49,5 +47,6 @@ def hopfield(train_paths, test_paths):
             H_distance.append(H)
             index += 1
 
-        print(f"{path} Corresponde a {train_paths[index_min]}")
-
+    #Ahora estamos haciendo una imagen a la vez, pero en caso de querer probar más
+    #de 1 imagen de deberia de retornar una lista con los índices mínimos
+    return index_min
