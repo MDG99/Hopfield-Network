@@ -1,17 +1,14 @@
-import time
+import tkinter as tk
 import tkinter.font as TkFont
 
 from model import *
-from tkinter import ttk
-import tkinter as tk
 from tkinter import *
-from tkinter import messagebox
-from tkinter import filedialog
-from tkinter.filedialog import askopenfile
-from PIL import Image, ImageTk
-from pathlib import Path
 from tkinter import ttk
+from pathlib import Path
 from tkinter import messagebox
+from PIL import Image, ImageTk
+from tkinter import filedialog
+
 
 class gui():
 
