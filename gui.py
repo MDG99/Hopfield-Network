@@ -89,17 +89,13 @@ class gui():
         #self.cmbPorts = ttk.Combobox(self.ventana, width=10, values=self.port_names)
         #self.cmbPorts.grid(column=1, row=1)
 
-
     def onFrameConfigure(self, event):
         '''Reset the scroll region to encompass the inner frame'''
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
-
     def reset_NN(self):
         self.Weights = 0
-        self.Patrones = []
         self.Vectors = []
-
 
     def train_NN(self):
         self.Weights, self.Vectors, qty = hopfield_train(self.Patrones)
@@ -109,8 +105,6 @@ class gui():
         index = hopfield_test(self.test_img, self.Vectors, self.Weights)
         #Es necesario sumarle 1 al valor de index ya que empieza en 0
         messagebox.showinfo(message=f"La imagen corresponde al patrón: {index+1} ", title="Patrón Reconocido")
-
-
 
     def upload_imgs(self):
         f_types = [('BMP Files', '*.bmp'), ('Jpg Files', '*.jpg'), ('PNG Files', '*.png')]
@@ -150,7 +144,6 @@ class gui():
             g1.grid(row=5, column=1, columnspan=3, rowspan=4)
             g1.image = img
             g1['image'] = img  # garbage collection
-
 
 
 my_app = gui()
